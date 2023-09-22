@@ -11,4 +11,28 @@
     <servlet-name>RegisterMember</servlet-name>
     <url-pattern>/registerMember</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginMember</servlet-name>
+    <servlet-class>com.yz.furn.web.LoginMemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginMember</servlet-name>
+    <url-pattern>/loginMember</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginAdmin</servlet-name>
+    <servlet-class>com.yz.furn.web.LoginAdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginAdmin</servlet-name>
+    <url-pattern>/loginAdmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ManageFurns</servlet-name>
+    <servlet-class>com.yz.furn.web.ManageFurnsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageFurns</servlet-name>
+    <url-pattern>/manage/manageFurns</url-pattern>
+  </servlet-mapping>
 </web-app>

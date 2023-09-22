@@ -1,16 +1,55 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>韩顺平教育-家居网购</title>
-    <base href="http://localhost:8088/">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <base href="<%=request.getContextPath()%>/" />
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
-
+    <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        // 注册
+        $("#sub-btn").click(function () {
+          var usernameVal = $("#username").val();
+          var usernamePattern = /^\w{6,10}$/;
+          // 验证用户名
+          if (!usernamePattern.test(usernameVal)) {
+            $("span[class='errorMsg']").text("用户名不符合规范");
+            return false;
+          }
+          // 验证密码
+          var passwordVal = $("#password").val();
+          var passwordPattern = /^\w{6,10}$/;
+          if (!passwordPattern.test(passwordVal)) {
+            $("span[class='errorMsg']").text("密码不符合规范");
+            return false;
+          }
+          var repwdVal = $("#repwd").val();
+          if (passwordVal != repwdVal) {
+            $("span[class='errorMsg']").text("俩次密码不一致");
+            return false;
+          }
+          // 验证电子邮箱
+          var emailVal = $("#email").val();
+          var emailPattern = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+          if (!emailPattern.test(emailVal)) {
+            $("span.errorMsg").text("邮箱格式不正确");
+            return false;
+          }
+        })
+        // 登陆
+        // $("#login-btn").click(function() {
+        //
+        // })
+      })
+    </script>
 </head>
+
 <body>
 <!-- Header Area start  -->
 <div class="header section">
@@ -37,8 +76,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png"
-                                                  alt="Site Logo"/></a>
+                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png" alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -57,9 +95,55 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active"  href="index.html">
-                            <h4>注册成功, 返回首页</h4>
+                        <a class="active" data-bs-toggle="tab" href="#lg1">
+                            <h4>会员登录</h4>
                         </a>
+                        <a data-bs-toggle="tab" href="#lg2">
+                            <h4>会员注册</h4>
+                        </a>
+                    </div>
+                    <div class="tab-content">
+                        <div id="lg1" class="tab-pane active">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form action="loginMember" method="post">
+                                        <p style="color: red;font-size: 20px;text-align: right">${requestScope.msg}</p>
+                                        <input type="hidden" name="action" value="login">
+                                        <input type="text" name="username" value="${requestScope.username}"
+                                               placeholder="请输入用户名"/>
+                                        <input type="password" name="password" placeholder="请输入密码"/>
+                                        <div class="button-box">
+                                            <div class="login-toggle-btn">
+                                                <input type="checkbox"/>
+                                                <a class="flote-none" href="javascript:void(0)">记住密码</a>
+                                                <a href="#">忘记密码?</a>
+                                            </div>
+                                            <button type="submit" id="login-btn"><span>登陆</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="lg2" class="tab-pane">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <span class="errorMsg"
+                                          style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;"></span>
+                                    <form action="registerMember" method="post">
+                                        <input type="hidden" name="action" value="register">
+                                        <input type="text" id="username" name="username" placeholder="Username"/>
+                                        <input type="password" id="password" name="password" placeholder="输入密码"/>
+                                        <input type="password" id="repwd" name="rePassword" placeholder="确认密码"/>
+                                        <input name="email" id="email" placeholder="电子邮件" type="email"/>
+                                        <input type="text" id="code" name="code" style="width: 50%" id="code"
+                                               placeholder="验证码"/>　　<img alt="" src="assets/images/code/code.bmp">
+                                        <div class="button-box">
+                                            <button type="submit" id="sub-btn"><span>会员注册</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,7 +170,8 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a></li>
+                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>

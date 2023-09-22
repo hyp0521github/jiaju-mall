@@ -1,7 +1,7 @@
 package com.yz.furn.service.impl;
 
 import com.yz.furn.dao.MemberDao;
-import com.yz.furn.dao.impl.MemberImpl;
+import com.yz.furn.dao.impl.MemberDaoImpl;
 import com.yz.furn.entity.Member;
 import com.yz.furn.service.MemberService;
 
@@ -11,18 +11,20 @@ import com.yz.furn.service.MemberService;
  */
 @SuppressWarnings("all")
 public class MemberServiceImpl implements MemberService {
-    private MemberDao memberDao = new MemberImpl();
+    private MemberDao memberDao = new MemberDaoImpl();
 
-    // 注册用户
     @Override
     public boolean registerMember(Member member) {
-        return memberDao.saveMember(member);
+        return memberDao.saveMember(member) == 1 ? true : false;
     }
 
-    // 查询用户
     @Override
-    public boolean isExistUsernameMember(String username) {
-        Member member = memberDao.queryMember(username);
-        return member == null ? false : true;
+    public boolean isExistMemberByUsername(String username) {
+        return memberDao.queryMemberByUsername(username) == null ? false : true;
+    }
+
+    @Override
+    public Member login(String username, String password) {
+        return memberDao.queryMemberByPasswordAndUsername(username, password);
     }
 }

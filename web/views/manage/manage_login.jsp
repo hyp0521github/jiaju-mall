@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>韩顺平教育-家居网购</title>
-    <base href="http://localhost:8088/">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <base href="<%=request.getContextPath()%>/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
     <link rel="stylesheet" href="assets/css/style.min.css"/>
-
 </head>
+
 <body>
 <!-- Header Area start  -->
 <div class="header section">
@@ -27,6 +28,7 @@
                     </div>
                 </div>
                 <!-- Header Logo End -->
+
             </div>
         </div>
     </div>
@@ -37,8 +39,7 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png"
-                                                  alt="Site Logo"/></a>
+                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png" alt="Site Logo" /></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -57,9 +58,31 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active"  href="index.html">
-                            <h4>注册成功, 返回首页</h4>
+                        <a class="active" data-bs-toggle="tab" href="#">
+                            <h4>管理员登录</h4>
                         </a>
+                    </div>
+                    <div class="tab-content">
+                        <div id="lg1" class="tab-pane active">
+                            <div class="login-form-container">
+                                <div class="login-register-form">
+                                    <form action="/loginAdmin" method="post">
+                                        <p style="color: red;text-align: right">${requestScope.get("error")}</p>
+                                        <input type="hidden" name="action" value="login">
+                                        <input type="text" name="username" value="${requestScope.get("username")}" placeholder="请输入账号"/>
+                                        <input type="password" name="password"  placeholder="请输入密码"/>
+                                        <div class="button-box">
+                                            <div class="login-toggle-btn">
+                                                <input type="checkbox"/>
+                                                <a class="flote-none" href="javascript:void(0)">记住密码</a>
+                                                <a href="#">忘记密码?</a>
+                                            </div>
+                                            <button type="submit"><span>登陆</span></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,7 +128,7 @@
                                         <li class="li"><a class="single-link" href="my-account.html">我的账号</a>
                                         </li>
                                         <li class="li"><a class="single-link" href="cart.html">我的购物车</a></li>
-                                        <li class="li"><a class="single-link" href="login.jsp">登录</a></li>
+                                        <li class="li"><a class="single-link" href="login.html">登录</a></li>
                                         <li class="li"><a class="single-link" href="wishlist.html">感兴趣的</a></li>
                                         <li class="li"><a class="single-link" href="checkout.html">结账</a></li>
                                     </ul>
@@ -139,9 +162,9 @@
     </div>
 </div>
 <!-- Footer Area End -->
-<script src="assets/js/vendor/vendor.min.js"></script>
-<script src="assets/js/plugins/plugins.min.js"></script>
+<script src="../../assets/js/vendor/vendor.min.js"></script>
+<script src="../../assets/js/plugins/plugins.min.js"></script>
 <!-- Main Js -->
-<script src="assets/js/main.js"></script>
+<script src="../../assets/js/main.js"></script>
 </body>
 </html>

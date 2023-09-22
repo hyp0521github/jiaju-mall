@@ -7,11 +7,14 @@ import com.yz.furn.entity.Member;
  * @version 1.0.0
  */
 @SuppressWarnings("all")
-public interface MemberDao{
+public interface MemberDao {
 
     // 保存用户信息
-    boolean saveMember(Member member);
+    int saveMember(Member member);
 
-    // 查询用户信息
-    Member queryMember(String username);
+    // 根据username查询用户信息
+    Member queryMemberByUsername(String username);
+
+    // 根据username和password查询用户信息
+    Member queryMemberByPasswordAndUsername(String username, String password);
 }

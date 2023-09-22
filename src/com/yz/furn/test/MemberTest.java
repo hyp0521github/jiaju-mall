@@ -2,7 +2,7 @@ package com.yz.furn.test;
 
 
 import com.yz.furn.dao.MemberDao;
-import com.yz.furn.dao.impl.MemberImpl;
+import com.yz.furn.dao.impl.MemberDaoImpl;
 import com.yz.furn.entity.Member;
 import com.yz.furn.utils.JDBCUtilsByDruid;
 
@@ -14,7 +14,7 @@ import java.sql.Connection;
  */
 @SuppressWarnings("all")
 public class MemberTest {
-    private MemberDao memberDao = new MemberImpl();
+    private MemberDao memberDao = new MemberDaoImpl();
 
     @org.junit.Test
     public void test() {
@@ -25,13 +25,13 @@ public class MemberTest {
     @org.junit.Test
     public void test1() {
         Member member = new Member(null, "yz", "123", "123@qq.com");
-        boolean b = memberDao.saveMember(member);
-        System.out.println(b);
+//        boolean b = memberDao.saveMember(member);
+//        System.out.println(b);
     }
 
     @org.junit.Test
     public void test2() {
-        Member admin = memberDao.queryMember("admin");
+        Member admin = memberDao.queryMemberByUsername("admin");
         System.out.println(admin);
     }
 }
