@@ -21,7 +21,7 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
     @Override
     public int addFurn(Furn furn) {
         String sql = "INSERT INTO furn(`id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path`) VALUES(NULL, ?, ?, ?, ?, ?, ?)";
-        return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(),furn.getSales(), furn.getStock(),furn.getImgPath());
+        return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(), furn.getSales(), furn.getStock(), furn.getImgPath());
     }
 
     @Override
@@ -31,14 +31,26 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
     }
 
     @Override
-    public Furn queryIdFurn(int id) {
+    public Furn queryFurnById(int id) {
         String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` FROM furn WHERE id = ?";
         return querySingle(sql, Furn.class, id);
     }
 
     @Override
-    public int updateIdFurn(Furn furn, int id) {
+    public int updateFurn(Furn furn) {
         String sql = "UPDATE furn SET name = ?, maker = ?, price = ?, sales = ?, stock = ? WHERE id = ?";
-        return update(sql, furn.getname(), furn.getMaker(),furn.getPrice(),furn.getSales(),furn.getStock(),furn.getId());
+        return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(), furn.getSales(), furn.getStock(), furn.getId());
+    }
+
+    @Override
+    public int queryTotal() {
+        String sql = "SELECT count(*) FROM furn";
+        return ((Number)queryScalar(sql, Furn.class, null)).intValue();
+    }
+
+    @Override
+    public List<Furn> queryFurnByLimitAndOffset(int limit, int offset) {
+        String sql = "SELECT * FROM furn LIMIT ? OFFSET ?";
+        return queryMulti(sql, Furn.class, limit, offset);
     }
 }

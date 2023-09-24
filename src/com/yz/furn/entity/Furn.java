@@ -27,7 +27,9 @@ public class Furn {
         this.price = price;
         this.sales = sales;
         this.stock = stock;
-        this.imgPath = imgPath;
+        if(!(imgPath == null || imgPath.equals(""))) {
+            this.imgPath = imgPath;
+        }
     }
 
     public int getId() {

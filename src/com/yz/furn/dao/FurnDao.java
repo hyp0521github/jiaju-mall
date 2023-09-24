@@ -10,7 +10,7 @@ import java.util.List;
  */
 @SuppressWarnings("all")
 public interface FurnDao {
-    // 查询家居列表
+    // 查询所有家居列表
     List<Furn> queryFurns();
 
     // 添加家居
@@ -20,8 +20,14 @@ public interface FurnDao {
     int delFurn(int id);
 
     // 查询单个家居
-    Furn queryIdFurn(int id);
+    Furn queryFurnById(int id);
 
     // 修改家居信息
-    int updateIdFurn(Furn furn, int id);
+    int updateFurn(Furn furn);
+
+    // 查询数据总量
+    int queryTotal();
+
+    // 获取分页数据
+    List<Furn> queryFurnByLimitAndOffset(int limit, int offset);
 }

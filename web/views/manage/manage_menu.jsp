@@ -34,7 +34,7 @@
                     <div class="header-actions">
                         <!-- Single Wedge Start -->
                         <div class="header-bottom-set dropdown">
-                            <a href="manage/manageFurns?action=queryFurns">家居管理</a>
+                            <a href="manage/manageFurns?action=page&pagesize=5&pageno=1">家居管理</a>
                         </div>
                         <div class="header-bottom-set dropdown">
                             <a href="manage/manageFurns?action=queryFurns">订单管理</a>

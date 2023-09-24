@@ -68,10 +68,11 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
+        <p style="color: red">${requestScope.get("error")}</p>
         <h3 class="cart-page-title">家居后台管理-修改家居</h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <form action="#" method="post">
+                <form action="/manage/manageFurns?action=update&id=${furn.id}" method="post">
                     <div class="table-content table-responsive cart-table-content">
                         <table>
                             <thead>
@@ -88,17 +89,18 @@
                             <tbody>
                             <tr>
                                 <td class="product-thumbnail">
-                                    <a href="#"><img class="img-responsive ml-3" src="assets/images/product-image/default.jpg"
+                                    <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
                                                      alt=""/></a>
                                 </td>
-                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="Name"/></td>
-                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="蚂蚁家居"/></td>
-                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="60.00"/></td>
+                                <input type="hidden" name="pageno" value="${param.pageno}">
+                                <td class="product-name"><input name="name" style="width: 60%" type="text" value="${furn.name}"/></td>
+                                <td class="product-name"><input name="maker" style="width: 90%" type="text" value="${furn.maker}"/></td>
+                                <td class="product-price-cart"><input name="price" style="width: 90%" type="text" value="${furn.price}"/></td>
                                 <td class="product-quantity">
-                                    <input name="sales" style="width: 90%" type="text" value="100"/>
+                                    <input name="sales" style="width: 90%" type="text" value="${furn.sales}"/>
                                 </td>
                                 <td class="product-quantity">
-                                    <input name="stock" style="width: 90%" type="text" value="80"/>
+                                    <input name="stock" style="width: 90%" type="text" value="${furn.stock}"/>
                                 </td>
                                 <td>
 <!--                                    <a href="#"><i class="icon-pencil"></i></a>-->

@@ -1,3 +1,5 @@
+<%@ page import="com.yz.furn.entity.Page" %>
+<%@ page import="com.yz.furn.entity.Furn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,19 @@
       $(function () {
         $("#del_btn").click(function () {
           var furnName = $(this).parent().parent().find("td:eq(1)").text();
-          return confirm("你确定要删除【"+ furnName +"吗");
+          return confirm("你确定要删除【" + furnName + "吗");
+        })
+        $("#prev").click(function () {
+          if ($(this).attr("data-pageno") == 1) {
+            alert("已经是第一页了")
+            return false;
+          }
+        })
+        $("#next").click(function () {
+          if ($(this).attr("data-pageno") == $(this).attr("data-totalPages")) {
+            alert("已经是最后一页了");
+            return false;
+          }
         })
       })
     </script>
@@ -102,7 +116,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requestScope.get('furns')}" var="furn">
+                            <c:forEach items='${requestScope.page.items}' var="furn">
                                 <tr>
                                     <td class="product-thumbnail">
                                         <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
@@ -114,7 +128,8 @@
                                     <td class="product-quantity">${furn.sales}</td>
                                     <td class="product-quantity">${furn.stock}</td>
                                     <td class="product-remove">
-                                        <a href="#"><i class="icon-pencil"></i></a>
+                                        <a href="/manage/manageFurns?id=${furn.id}&action=get&pageno=${requestScope.page.pageno}"><i
+                                                class="icon-pencil"></i></a>
                                         <a id="del_btn" href="/manage/manageFurns?id=${furn.id}&action=delFurns"><i
                                                 class="icon-close"></i></a>
                                     </td>
@@ -125,6 +140,37 @@
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="pro-pagination-style text-center mb-md-30px mb-lm-30px mt-6" data-aos="fade-up">
+            <ul>
+                <li><a href="/manage/manageFurns?action=page&pagesize=5&pageno=1">首页</a></li>
+                <li><a id="prev" data-pageno="${requestScope.page.pageno}"
+                       href="/manage/manageFurns?action=page&pagesize=5&pageno=${requestScope.page.pageno - 1}">上页</a>
+                </li>
+                <c:set var="max" value="5"></c:set>
+                <c:set var="begin" value="1"></c:set>
+                <c:set var="end" value="${requestScope.page.totalPages}"></c:set>
+                <c:forEach var="pageno" begin="${begin}" end="${end}">
+                    <c:if test="${pageno == requestScope.page.pageno}">
+                        <li>
+                            <a class="active" href="/manage/manageFurns?action=page&pagesize=5&pageno=${pageno}">${pageno}</a>
+                        </li>
+                    </c:if>
+                    <c:if test="${pageno != requestScope.page.pageno}">
+                        <li>
+                            <a href="/manage/manageFurns?action=page&pagesize=5&pageno=${pageno}">${pageno}</a>
+                        </li>
+                    </c:if>
+                </c:forEach>
+                <li><a id="next" data-pageno="${requestScope.page.pageno}"
+                       data-totalPages="${requestScope.page.totalPages}"
+                       href="/manage/manageFurns?action=page&pagesize=5&pageno=${requestScope.page.pageno + 1}">下页</a>
+                </li>
+                <li><a href="/manage/manageFurns?action=page&pagesize=5&pageno=${requestScope.page.totalPages}">末页</a>
+                </li>
+                <li><a>共${requestScope.page.totalPages}页</a></li>
+                <li><a>共${requestScope.page.totalSize}记录</a></li>
+            </ul>
         </div>
     </div>
 </div>

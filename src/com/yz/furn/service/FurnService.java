@@ -1,6 +1,7 @@
 package com.yz.furn.service;
 
 import com.yz.furn.entity.Furn;
+import com.yz.furn.entity.Page;
 
 import java.util.List;
 
@@ -15,4 +16,10 @@ public interface FurnService {
     boolean addFurn(Furn furn);
 
     boolean delFurn(int id);
+
+    Furn get(int id);
+
+    boolean update(Furn furn);
+
+    Page getPage(int pagesize, int pageno);
 }
