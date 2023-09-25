@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -26,7 +27,10 @@ public class LoginMemberServlet extends BasicServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if (memberService.login(username, password) != null) {
-            request.getRequestDispatcher("/views/member/login_ok.html").forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("username", username);
+            session.setMaxInactiveInterval(60 * 60 * 24 * 3); // 设置session有效时间为三天
+            request.getRequestDispatcher("/views/member/login_ok.jsp").forward(request, response);
         } else {
             request.setAttribute("msg", "输入的账号或密码有误");
             request.setAttribute("username", username);

@@ -42,10 +42,6 @@
             return false;
           }
         })
-        // 登陆
-        // $("#login-btn").click(function() {
-        //
-        // })
       })
     </script>
 </head>
@@ -212,11 +208,11 @@
                 <div class="row flex-sm-row-reverse">
                     <div class="col-md-6 text-right">
                         <div class="payment-link">
-                            <img src="#" alt="">
+                            <%--<img src="#" alt="">--%>
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 2023 院长家居~</p>
                     </div>
                 </div>
             </div>

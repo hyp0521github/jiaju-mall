@@ -70,12 +70,22 @@
                             </div>
                         </div>
                         <!-- Single Wedge Start -->
-                        <div class="header-bottom-set dropdown">
-                            <a href="views/member/login.jsp">登录|注册</a>
-                        </div>
-                        <div class="header-bottom-set dropdown">
-                            <a href="/views/manage/manage_login.jsp">后台管理</a>
-                        </div>
+                        <c:if test="${not empty sessionScope.username}">
+                            <div class="header-bottom-set dropdown">
+                                <a href="views/member/login.jsp">欢迎: ${sessionScope.username}</a>
+                            </div>
+                            <div class="header-bottom-set dropdown">
+                                <a href="/views/manage/manage_login.jsp">订单管理</a>
+                            </div>
+                            <div class="header-bottom-set dropdown">
+                                <a href="/views/manage/manage_login.jsp">安全退出</a>
+                            </div>
+                        </c:if>
+                        <c:if test="${empty sessionScope.username}">
+                            <div class="header-bottom-set dropdown">
+                                <a href="views/member/login.jsp">登录|注册</a>
+                            </div>
+                        </c:if>
                         <!-- Single Wedge End -->
                         <a href="#offcanvas-cart"
                            class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
@@ -306,7 +316,7 @@
                 <div class="row flex-sm-row-reverse">
                     <div class="col-md-6 text-right">
                         <div class="payment-link">
-                            <img src="#" alt="">
+                            <%--<img src="#" alt="">--%>
                         </div>
                     </div>
                     <div class="col-md-6 text-left">

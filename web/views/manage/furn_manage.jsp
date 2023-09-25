@@ -239,7 +239,8 @@
                 <div class="row flex-sm-row-reverse">
                     <div class="col-md-6 text-right">
                         <div class="payment-link">
-                            <img src="#" alt="">
+                            <%--相当于默认请求了http://localhost:8088/#的资源--%>
+                            <%--<img src="#" alt="">--%>
                         </div>
                     </div>
                 </div>

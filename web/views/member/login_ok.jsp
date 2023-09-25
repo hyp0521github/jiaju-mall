@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <title>韩顺平教育-家居网购</title>
-    <base href="http://localhost:8088/">
+    <base href="<%=request.getContextPath()%>/"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="assets/css/vendor/vendor.min.css"/>
     <link rel="stylesheet" href="assets/css/plugins/plugins.min.css"/>
@@ -23,10 +24,25 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo"/></a>
+                        <a href="/"><img src="assets/images/logo/logo.png" alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
+                <div class="col align-self-center">
+                    <div class="header-actions">
+                        <!-- Single Wedge Start -->
+                        <div class="header-bottom-set dropdown">
+                            <a href="views/member/login.jsp">欢迎: ${sessionScope.username}</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="/views/manage/manage_login.jsp">订单管理</a>
+                        </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="/views/manage/manage_login.jsp">安全退出</a>
+                        </div>
+                        <!-- Single Wedge End -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -37,8 +53,8 @@
                 <!-- Header Logo Start -->
                 <div class="col-auto align-self-center">
                     <div class="header-logo">
-                        <a href="index.html"><img width="280px" src="assets/images/logo/logo.png"
-                                                  alt="Site Logo"/></a>
+                        <a href="/"><img width="280px" src="assets/images/logo/logo.png"
+                                         alt="Site Logo"/></a>
                     </div>
                 </div>
                 <!-- Header Logo End -->
@@ -57,7 +73,7 @@
             <div class="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div class="login-register-wrapper">
                     <div class="login-register-tab-list nav">
-                        <a class="active"  href="index.html">
+                        <a class="active" href="/">
                             <h4>登录成功, 返回首页</h4>
                         </a>
                     </div>
@@ -86,7 +102,8 @@
                                     <ul class="align-items-center">
                                         <li class="li"><a class="single-link" href="about.html">关于我们</a></li>
                                         <li class="li"><a class="single-link" href="#">交货信息</a></li>
-                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a></li>
+                                        <li class="li"><a class="single-link" href="privacy-policy.html">隐私与政策</a>
+                                        </li>
                                         <li class="li"><a class="single-link" href="#">条款和条件</a></li>
                                         <li class="li"><a class="single-link" href="#">制造</a></li>
                                     </ul>
@@ -127,11 +144,11 @@
                 <div class="row flex-sm-row-reverse">
                     <div class="col-md-6 text-right">
                         <div class="payment-link">
-                            <img src="#" alt="">
+                            <!--<img src="#" alt="">-->
                         </div>
                     </div>
                     <div class="col-md-6 text-left">
-                        <p class="copy-text">Copyright &copy; 2021 韩顺平教育~</p>
+                        <p class="copy-text">Copyright &copy; 2023 院长家居~</p>
                     </div>
                 </div>
             </div>
