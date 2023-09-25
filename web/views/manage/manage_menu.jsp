@@ -39,9 +39,6 @@
                         <div class="header-bottom-set dropdown">
                             <a href="manage/manageFurns?action=queryFurns">订单管理</a>
                         </div>
-                        <div class="header-bottom-set dropdown">
-                            <a href="views/manage/furn_add.jsp?action=addFurns">添加订单</a>
-                        </div>
                     </div>
                 </div>
                 <!-- Header Action End -->

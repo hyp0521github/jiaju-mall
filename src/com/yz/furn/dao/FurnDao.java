@@ -30,4 +30,10 @@ public interface FurnDao {
 
     // 获取分页数据
     List<Furn> queryFurnByLimitAndOffset(int limit, int offset);
+
+    // 根据家居名称查询家居信息
+    List<Furn> queryFurnByName(String name, int limit, int offset);
+
+    // 根据家居名称获取对应的家居数量
+    int queryTotalByName(String name);
 }

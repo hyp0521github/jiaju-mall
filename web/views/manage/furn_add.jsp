@@ -93,6 +93,7 @@
                                                      src="assets/images/product-image/default.jpg"
                                                      alt="图片"/></a>
                                 </td>
+                                <input type="hidden" name="pageno" value="${param.pageno}">
                                 <td class="product-name"><input name="name" style="width: 60%" type="text"/></td>
                                 <td class="product-name"><input name="maker" style="width: 90%" type="text"/></td>
                                 <td class="product-price-cart"><input name="price" style="width: 90%" type="text"></td>

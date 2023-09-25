@@ -45,12 +45,24 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
     @Override
     public int queryTotal() {
         String sql = "SELECT count(*) FROM furn";
-        return ((Number)queryScalar(sql, Furn.class, null)).intValue();
+        return ((Number) queryScalar(sql, Furn.class, null)).intValue();
     }
 
     @Override
     public List<Furn> queryFurnByLimitAndOffset(int limit, int offset) {
         String sql = "SELECT * FROM furn LIMIT ? OFFSET ?";
         return queryMulti(sql, Furn.class, limit, offset);
+    }
+
+    @Override
+    public List<Furn> queryFurnByName(String name, int limit, int offset) {
+        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` FROM furn WHERE name LIKE ? LIMIT ? OFFSET ?";
+        return queryMulti(sql, Furn.class, '%' + name + '%', limit, offset);
+    }
+
+    @Override
+    public int queryTotalByName(String name) {
+        String sql = "SELECT count(*) FROM furn WHERE name LIKE ?";
+        return ((Number) queryScalar(sql, Furn.class, '%' + name + '%')).intValue();
     }
 }

@@ -35,4 +35,12 @@
     <servlet-name>ManageFurns</servlet-name>
     <url-pattern>/manage/manageFurns</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CustomerFurns</servlet-name>
+    <servlet-class>com.yz.furn.web.CustomerFurnsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerFurns</servlet-name>
+    <url-pattern>/customer/customerFurns</url-pattern>
+  </servlet-mapping>
 </web-app>

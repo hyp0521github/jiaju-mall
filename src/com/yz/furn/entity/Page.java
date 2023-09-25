@@ -8,7 +8,8 @@ import java.util.List;
  */
 @SuppressWarnings("all")
 public class Page<T> {
-    public static final Integer PAGESIZE = 3;
+    public static final Integer PAGESIZE = 5;
+    public static final Integer PAGENO = 1;
     private Integer pageno; // 页数
     private Integer pagesize = PAGESIZE; // 条数
     private Integer totalSize; // 总数据条数

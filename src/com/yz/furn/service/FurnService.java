@@ -22,4 +22,8 @@ public interface FurnService {
     boolean update(Furn furn);
 
     Page getPage(int pagesize, int pageno);
+
+    int getTotalByName(String name);
+
+    Page<Furn> getPageByName(String name, int pagesize, int pageno);
 }

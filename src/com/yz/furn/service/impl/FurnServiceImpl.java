@@ -62,4 +62,28 @@ public class FurnServiceImpl extends BasicDao<Furn> implements FurnService {
         page.setItems(furns);
         return page;
     }
+
+    @Override
+    public int getTotalByName(String name) {
+        return furnDao.queryTotalByName(name);
+    }
+
+    @Override
+    public Page<Furn> getPageByName(String name, int pagesize, int pageno) {
+        int totalSize = furnDao.queryTotalByName(name);
+        Page<Furn> page = new Page<>();
+        page.setTotalSize(totalSize);
+        page.setPagesize(pagesize);
+        page.setPageno(pageno);
+        int totalPages = totalSize / pagesize;
+        if(totalSize % pagesize > 0) {
+            totalPages += 1;
+        }
+        page.setTotalPages(totalPages);
+        int limit = pagesize;
+        int offset = (pageno - 1) * pagesize;
+        List<Furn> furns = furnDao.queryFurnByName(name, limit, offset);
+        page.setItems(furns);
+        return page;
+    }
 }

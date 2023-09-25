@@ -17,7 +17,7 @@
     <script type="text/javascript" src="script/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
       $(function () {
-        $("#del_btn").click(function () {
+        $(".del_btn").click(function () {
           var furnName = $(this).parent().parent().find("td:eq(1)").text();
           return confirm("你确定要删除【" + furnName + "吗");
         })
@@ -70,6 +70,9 @@
                         <div class="header-bottom-set dropdown">
                             <a href="#">后台管理</a>
                         </div>
+                        <div class="header-bottom-set dropdown">
+                            <a href="views/manage/furn_add.jsp?action=addFurns&pageno=${requestScope.page.pageno}">添加订单</a>
+                        </div>
                     </div>
                 </div>
                 <!-- Header Action End -->
@@ -117,7 +120,7 @@
                             </thead>
                             <tbody>
                             <c:forEach items='${requestScope.page.items}' var="furn">
-                                <tr>
+                                <tr id="items">
                                     <td class="product-thumbnail">
                                         <a href="#"><img class="img-responsive ml-3" src="${furn.imgPath}"
                                                          alt=""/></a>
@@ -130,7 +133,7 @@
                                     <td class="product-remove">
                                         <a href="/manage/manageFurns?id=${furn.id}&action=get&pageno=${requestScope.page.pageno}"><i
                                                 class="icon-pencil"></i></a>
-                                        <a id="del_btn" href="/manage/manageFurns?id=${furn.id}&action=delFurns"><i
+                                        <a class="del_btn" href="/manage/manageFurns?id=${furn.id}&action=delFurns&pageno=${requestScope.page.pageno}"><i
                                                 class="icon-close"></i></a>
                                     </td>
                                 </tr>
