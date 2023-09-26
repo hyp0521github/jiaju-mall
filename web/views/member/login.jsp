@@ -41,6 +41,19 @@
             $("span.errorMsg").text("邮箱格式不正确");
             return false;
           }
+          // 验证验证码
+          var codeVal = $("#code").val();
+          codeVal = $.trim(codeVal);
+          if(codeVal == "") {
+            alert("请输入正确的验证码");
+            return false;
+          }
+        })
+
+        // 切换验证码图片
+        $("#code_img").click(function() {
+          // 浏览器请求同一个url地址默认是不会发第二次请求的
+          this.src = "http://localhost:8088/kaptcha?time" + new Date();
         })
       })
     </script>
@@ -102,7 +115,7 @@
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form action="loginMember" method="post">
+                                    <form action="member" method="post">
                                         <p style="color: red;font-size: 20px;text-align: right">${requestScope.msg}</p>
                                         <input type="hidden" name="action" value="login">
                                         <input type="text" name="username" value="${requestScope.username}"
@@ -125,14 +138,14 @@
                                 <div class="login-register-form">
                                     <span class="errorMsg"
                                           style="float: right; font-weight: bold; font-size: 20pt; margin-left: 10px;"></span>
-                                    <form action="registerMember" method="post">
+                                    <form action="member" method="post">
                                         <input type="hidden" name="action" value="register">
-                                        <input type="text" id="username" name="username" placeholder="Username"/>
-                                        <input type="password" id="password" name="password" placeholder="输入密码"/>
-                                        <input type="password" id="repwd" name="rePassword" placeholder="确认密码"/>
-                                        <input name="email" id="email" placeholder="电子邮件" type="email"/>
-                                        <input type="text" id="code" name="code" style="width: 50%" id="code"
-                                               placeholder="验证码"/>　　<img alt="" src="assets/images/code/code.bmp">
+                                        <input type="text" id="username" name="username" placeholder="请输入用户名"/>
+                                        <input type="password" id="password" name="password" placeholder="请输入输入密码"/>
+                                        <input type="password" id="repwd" name="rePassword" placeholder="请输入确认密码"/>
+                                        <input name="email" id="email" placeholder="请输入电子邮件" type="email"/>
+                                        <input type="text" id="code" name="code" style="width: 50%"
+                                               placeholder="请输入验证码"/>　　<img id="code_img" alt="验证码" src="kaptcha">
                                         <div class="button-box">
                                             <button type="submit" id="sub-btn"><span>会员注册</span></button>
                                         </div>

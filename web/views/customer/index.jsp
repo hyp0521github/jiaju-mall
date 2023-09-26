@@ -78,7 +78,7 @@
                                 <a href="/views/manage/manage_login.jsp">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="/views/manage/manage_login.jsp">安全退出</a>
+                                <a href="member?action=logout">安全退出</a>
                             </div>
                         </c:if>
                         <c:if test="${empty sessionScope.username}">

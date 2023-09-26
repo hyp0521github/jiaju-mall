@@ -4,20 +4,12 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
   <servlet>
-    <servlet-name>RegisterMember</servlet-name>
-    <servlet-class>com.yz.furn.web.RegisterMemberServlet</servlet-class>
+    <servlet-name>MemberServlet</servlet-name>
+    <servlet-class>com.yz.furn.web.MemberServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RegisterMember</servlet-name>
-    <url-pattern>/registerMember</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>LoginMember</servlet-name>
-    <servlet-class>com.yz.furn.web.LoginMemberServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginMember</servlet-name>
-    <url-pattern>/loginMember</url-pattern>
+    <servlet-name>MemberServlet</servlet-name>
+    <url-pattern>/member</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LoginAdmin</servlet-name>
@@ -42,5 +34,13 @@
   <servlet-mapping>
     <servlet-name>CustomerFurns</servlet-name>
     <url-pattern>/customer/customerFurns</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/kaptcha</url-pattern>
   </servlet-mapping>
 </web-app>
