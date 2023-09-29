@@ -3,7 +3,10 @@ package com.yz.furn.dao.impl;
 import com.yz.furn.dao.BasicDao;
 import com.yz.furn.dao.FurnDao;
 import com.yz.furn.entity.Furn;
+import org.apache.commons.dbutils.QueryRunner;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -40,6 +43,12 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
     public int updateFurn(Furn furn) {
         String sql = "UPDATE furn SET name = ?, maker = ?, price = ?, sales = ?, stock = ? WHERE id = ?";
         return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(), furn.getSales(), furn.getStock(), furn.getId());
+    }
+
+    @Override
+    public int updateFurnInSalesAndStock(int count, int id) {
+        String sql = "UPDATE furn SET sales = sales + ?, stock = stock - ? WHERE id = ?";
+        return update(sql, count, count, id);
     }
 
     @Override

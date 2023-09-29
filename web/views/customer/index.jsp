@@ -34,6 +34,11 @@
             return false;
           }
         })
+        $(".add-to-cart").click(function () {
+          var furnId = $(this).attr("furnId");
+          alert(furnId)
+          location.href = "http://localhost:8088/cart?action=add&id=" + furnId;
+        })
       })
     </script>
 </head>
@@ -75,27 +80,26 @@
                                 <a href="views/member/login.jsp">欢迎: ${sessionScope.username}</a>
                             </div>
                             <div class="header-bottom-set dropdown">
-                                <a href="/views/manage/manage_login.jsp">订单管理</a>
+                                <a href="views/manage/manage_login.jsp">订单管理</a>
                             </div>
                             <div class="header-bottom-set dropdown">
                                 <a href="member?action=logout">安全退出</a>
                             </div>
+                            <a href="views/cart/cart.jsp"
+                               class="header-action-btn header-action-btn-cart pr-0">
+                                <i class="icon-handbag"> 购物车</i>
+                                <span class="header-action-num">${sessionScope.cart.totalCount == null ? 0 : sessionScope.cart.totalCount }</span>
+                            </a>
+                            <a href="views/cart/cart.jsp"
+                               class="header-action-btn header-action-btn-menu d-lg-none">
+                                <i class="icon-menu"></i>
+                            </a>
                         </c:if>
                         <c:if test="${empty sessionScope.username}">
                             <div class="header-bottom-set dropdown">
                                 <a href="views/member/login.jsp">登录|注册</a>
                             </div>
                         </c:if>
-                        <!-- Single Wedge End -->
-                        <a href="#offcanvas-cart"
-                           class="header-action-btn header-action-btn-cart offcanvas-toggle pr-0">
-                            <i class="icon-handbag"> 购物车</i>
-                            <span class="header-action-num">88</span>
-                        </a>
-                        <a href="#offcanvas-mobile-menu"
-                           class="header-action-btn header-action-btn-menu offcanvas-toggle d-lg-none">
-                            <i class="icon-menu"></i>
-                        </a>
                     </div>
                 </div>
                 <!-- Header Action End -->
@@ -159,8 +163,8 @@
                                                    data-bs-target="#exampleModal"><i
                                                         class="icon-size-fullscreen"></i></a>
                                             </div>
-                                            <button title="Add To Cart~" class=" add-to-cart">Add
-                                                To Cart
+                                            <button title="Add To Cart~" class="add-to-cart" furnId="${furn.id}">
+                                                添加至购物车
                                             </button>
                                         </div>
                                         <div class="content">

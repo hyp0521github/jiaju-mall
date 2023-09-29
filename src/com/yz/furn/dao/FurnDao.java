@@ -2,6 +2,7 @@ package com.yz.furn.dao;
 
 import com.yz.furn.entity.Furn;
 
+import java.sql.Connection;
 import java.util.List;
 
 /**
@@ -24,6 +25,9 @@ public interface FurnDao {
 
     // 修改家居信息
     int updateFurn(Furn furn);
+
+    // 修改家居的销量和库存
+    int updateFurnInSalesAndStock(int count, int id);
 
     // 查询数据总量
     int queryTotal();

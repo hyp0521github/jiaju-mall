@@ -7,19 +7,24 @@ import java.math.BigDecimal;
  * @version 1.0.0
  */
 @SuppressWarnings("all")
-public class CartItem {
+public class OrderItem {
     private Integer id;
     private String name;
-    private BigDecimal price; // 单价
+    private BigDecimal price;
     private Integer count;
-    private BigDecimal totalPrice; // 金额
+    private BigDecimal totalPrice;
+    private String orderId;
 
-    public CartItem(Integer id, String name, BigDecimal price, Integer count, BigDecimal totalPrice) {
+    public OrderItem() {
+    }
+
+    public OrderItem(Integer id, String name, BigDecimal price, Integer count, BigDecimal totalPrice, String orderId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.count = count;
         this.totalPrice = totalPrice;
+        this.orderId = orderId;
     }
 
     public Integer getId() {
@@ -62,14 +67,23 @@ public class CartItem {
         this.totalPrice = totalPrice;
     }
 
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public String toString() {
-        return "CartItem{" +
+        return "OrderItem{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", count=" + count +
                 ", totalPrice=" + totalPrice +
+                ", orderId='" + orderId + '\'' +
                 '}';
     }
 }

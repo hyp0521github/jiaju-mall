@@ -2,6 +2,9 @@ package com.yz.furn.utils;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 /**
@@ -28,5 +31,13 @@ public class WebUtils {
             e.printStackTrace();
         }
         return bean;
+    }
+
+    // 生成当前时间
+    public static String currentDateTime() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = currentDateTime.format(formatter);
+        return formattedDateTime;
     }
 }
