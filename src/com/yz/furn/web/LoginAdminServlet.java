@@ -27,6 +27,7 @@ public class LoginAdminServlet extends BasicServlet {
         if(adminService.isExistsAdmin(username)) {
             Admin admin = adminService.login(username, password);
             if(admin != null) {
+                request.getSession().setAttribute("username", admin.getUsername());
                 request.getRequestDispatcher("/views/manage/manage_menu.jsp").forward(request,response);
             } else {
                 request.setAttribute("error", "用户名或密码错误");

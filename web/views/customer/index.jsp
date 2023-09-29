@@ -99,6 +99,11 @@
                             <div class="header-bottom-set dropdown">
                                 <a href="views/member/login.jsp">登录|注册</a>
                             </div>
+                            <a href="views/cart/cart.jsp"
+                               class="header-action-btn header-action-btn-cart pr-0">
+                                <i class="icon-handbag"> 购物车</i>
+                                <span class="header-action-num">${sessionScope.cart.totalCount == null ? 0 : sessionScope.cart.totalCount }</span>
+                            </a>
                         </c:if>
                     </div>
                 </div>
