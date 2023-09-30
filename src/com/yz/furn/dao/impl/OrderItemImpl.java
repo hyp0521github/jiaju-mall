@@ -20,6 +20,7 @@ public class OrderItemImpl extends BasicDao<OrderItem> implements OrderItemDao {
 
     @Override
     public int addOrderItem(OrderItem item) {
+        System.out.println(new Thread().currentThread().getName());
         String sql = "INSERT INTO `order_time`(id, `name`, price, `count`, total_price, order_id) VALUES (null, ?, ?, ?, ?, ?)";
         return update(sql, item.getName(), item.getPrice(), item.getCount(), item.getTotalPrice(), item.getOrderId());
     }

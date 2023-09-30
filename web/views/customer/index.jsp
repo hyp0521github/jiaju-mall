@@ -211,8 +211,32 @@
                href="${requestScope.page.url}&pagesize=5&pageno=${requestScope.page.pageno - 1}">上页</a>
         </li>
         <c:set var="max" value="5"></c:set>
-        <c:set var="begin" value="1"></c:set>
-        <c:set var="end" value="${requestScope.page.totalPages}"></c:set>
+        <%--总页数小于5--%>
+        <c:if test="${requestScope.page.totalPages <= max}">
+            <c:set var="begin" value="1"></c:set>
+            <c:set var="end" value="${requestScope.page.totalPages}"></c:set>
+        </c:if>
+        <%--总页数大于5--%>
+        <c:if test="${requestScope.page.totalPages > max}">
+            <!-- 当前页大于第三页 -->
+            <c:if test="${requestScope.page.pageno > 3}">
+                <!-- 当前页是后三页 -->
+                <c:if test="${requestScope.page.totalPages - requestScope.page.pageno < 3}">
+                    <c:set var="begin" value="${requestScope.page.totalPages - max + 1}"></c:set>
+                    <c:set var="end" value="${requestScope.page.totalPages}"></c:set>
+                </c:if>
+                <!-- 当前页是中间页 -->
+                <c:if test="${requestScope.page.totalPages - requestScope.page.pageno >= 3}">
+                    <c:set var="begin" value="${requestScope.page.pageno - 2}"></c:set>
+                    <c:set var="end" value="${requestScope.page.pageno + 2}"></c:set>
+                </c:if>
+            </c:if>
+            <!-- 当前页小于第三页 -->
+            <c:if test="${requestScope.page.pageno <= 3}">
+                <c:set var="begin" value="${1}"></c:set>
+                <c:set var="end" value="${max}"></c:set>
+            </c:if>
+        </c:if>
         <c:forEach var="pageno" begin="${begin}" end="${end}">
             <c:if test="${pageno == requestScope.page.pageno}">
                 <li>

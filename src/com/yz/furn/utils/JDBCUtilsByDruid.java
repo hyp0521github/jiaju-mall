@@ -17,6 +17,7 @@ import java.util.Properties;
 @SuppressWarnings({"all"})
 public class JDBCUtilsByDruid {
     public static DataSource ds;
+    public static ThreadLocal threadLocal = new ThreadLocal<Object>();
 
     static {
         Properties properties = new Properties();
@@ -24,15 +25,57 @@ public class JDBCUtilsByDruid {
             properties.load(JDBCUtilsByDruid.class.getClassLoader().getResourceAsStream("druid.properties"));
             ds = DruidDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     public static Connection getConnection() {
-        try {
-            return ds.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        Connection connection = (Connection) threadLocal.get();
+        if (connection == null) {
+            try {
+                threadLocal.set(ds.getConnection());
+                connection = (Connection) threadLocal.get();
+                connection.setAutoCommit(false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return connection;
+    }
+
+    public static void commit() {
+        Connection connection = (Connection) threadLocal.get();
+        if (connection != null) {
+            try {
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            threadLocal.remove();
+        }
+    }
+
+    public static void rollback() {
+        Connection connection = (Connection) threadLocal.get();
+        if (connection != null) {
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            threadLocal.remove();
         }
     }
 
@@ -45,7 +88,7 @@ public class JDBCUtilsByDruid {
             if (connection != null)
                 connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

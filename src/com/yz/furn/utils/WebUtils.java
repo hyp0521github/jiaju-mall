@@ -5,6 +5,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Map;
  */
 @SuppressWarnings("all")
 public class WebUtils {
+    public static String FURN_IMG_PATH = "assets/images/product-image"; // 图片路径
     //字符串转数字
     public static int parseInt(String num, int defaultNum) {
         try {

@@ -20,7 +20,7 @@ public abstract class BasicServlet extends HttpServlet {
         // 通过反射调用各个servlet中方法
         try {
             Method declaredMethod = this.getClass().getDeclaredMethod(action, HttpServletRequest.class, HttpServletResponse.class);
-            declaredMethod.invoke(this,request, response);
+            declaredMethod.invoke(this, request, response);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

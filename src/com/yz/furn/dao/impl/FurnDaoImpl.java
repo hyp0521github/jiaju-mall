@@ -3,10 +3,7 @@ package com.yz.furn.dao.impl;
 import com.yz.furn.dao.BasicDao;
 import com.yz.furn.dao.FurnDao;
 import com.yz.furn.entity.Furn;
-import org.apache.commons.dbutils.QueryRunner;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -17,7 +14,7 @@ import java.util.List;
 public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
     @Override
     public List<Furn> queryFurns() {
-        String sql = "SELECT id, name, maker, price, sales, stock, img_path imgPath FROM furn";
+        String sql = "SELECT id, name, maker, price, sales, stock, img_path as imgPath FROM furn";
         return queryMulti(sql, Furn.class, null);
     }
 
@@ -35,14 +32,14 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
 
     @Override
     public Furn queryFurnById(int id) {
-        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` FROM furn WHERE id = ?";
+        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` imgPath FROM furn WHERE id = ?";
         return querySingle(sql, Furn.class, id);
     }
 
     @Override
     public int updateFurn(Furn furn) {
-        String sql = "UPDATE furn SET name = ?, maker = ?, price = ?, sales = ?, stock = ? WHERE id = ?";
-        return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(), furn.getSales(), furn.getStock(), furn.getId());
+        String sql = "UPDATE furn SET name = ?, maker = ?, price = ?, sales = ?, stock = ?, img_path = ? WHERE id = ?";
+        return update(sql, furn.getname(), furn.getMaker(), furn.getPrice(), furn.getSales(), furn.getStock(), furn.getImgPath(), furn.getId());
     }
 
     @Override
@@ -59,13 +56,13 @@ public class FurnDaoImpl extends BasicDao<Furn> implements FurnDao {
 
     @Override
     public List<Furn> queryFurnByLimitAndOffset(int limit, int offset) {
-        String sql = "SELECT * FROM furn LIMIT ? OFFSET ?";
+        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` imgPath FROM furn LIMIT ? OFFSET ?";
         return queryMulti(sql, Furn.class, limit, offset);
     }
 
     @Override
     public List<Furn> queryFurnByName(String name, int limit, int offset) {
-        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` FROM furn WHERE name LIKE ? LIMIT ? OFFSET ?";
+        String sql = "SELECT `id`,`name`,`maker`,`price`,`sales`,`stock`,`img_path` imgPath FROM furn WHERE name LIKE ? LIMIT ? OFFSET ?";
         return queryMulti(sql, Furn.class, '%' + name + '%', limit, offset);
     }
 
